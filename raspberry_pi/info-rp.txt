@@ -1,0 +1,5 @@
+we can use these tutorials : 
+
+https://lindevs.com/save-mqtt-data-to-sqlite-database-using-python
+
+http://www.steves-internet-guide.com/logging-mqtt-sensor-data-to-sql-database-with-python/
