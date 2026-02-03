@@ -1,30 +1,25 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 
-// ===== SENSOR PIN =====
-#define SOIL_PIN 32  // Analog pin connected to soil moisture sensor
 
-// ===== SENSOR CALIBRATION =====
-const int dry = 4095;   // When sensor is in dry soil (or air)
-const int wet = 400;    // When sensor is in water
+#define SOIL_PIN 32  // analog pin connected to soil moisture sensor
 
-// ===== WiFi Credentials =====
+const int dry = 4095;   // when sensor is in dry soil or air
+const int wet = 400;    //  when sensor is in  water
+
 const char* ssid = "Connecting...";
 const char* password = "71326979";
 
-// ===== MQTT Broker (Free Public) =====
 const char* mqtt_server = "broker.hivemq.com";
 const int mqtt_port = 1883;
 const char* mqtt_topic = "esp/moisture";
 
-// ===== Setup WiFi & MQTT =====
 WiFiClient espClient;
 PubSubClient client(espClient);
 
 unsigned long lastMsg = 0;
-const long MSG_INTERVAL = 2000;  // Send data every 2 seconds
+const long MSG_INTERVAL = 2000;  //  every 2 sec
 
-// ===== WiFi Connection =====
 void setup_wifi() {
   Serial.println("\n=== Connecting to WiFi ===");
   WiFi.begin(ssid, password);
@@ -45,7 +40,6 @@ void setup_wifi() {
   }
 }
 
-// ===== MQTT Reconnection =====
 void reconnect() {
   while (!client.connected()) {
     Serial.print("Connecting to MQTT...");
@@ -61,22 +55,18 @@ void reconnect() {
   }
 }
 
-// ===== Read Sensor Data =====
 void read_and_publish_sensor() {
-  // Read raw ADC value (0-4095)
   int rawValue = analogRead(SOIL_PIN);
   
-  // Convert to moisture percentage (0-100%)
-  // Constrain to ensure we stay within 0-100
+  // constrain to ensure we stay within 0-100  and convert to moisture percentage 0-100%
   int moisturePercent = map(rawValue, wet, dry, 100, 0);
   moisturePercent = constrain(moisturePercent, 0, 100);
   
-  // Create JSON payload
+  // create JSON payload
   char payload[100];
   sprintf(payload, "{\"raw\":%d,\"moist\":%d,\"timestamp\":%lu}", 
           rawValue, moisturePercent, millis());
   
-  // Print to Serial for debugging
   Serial.print("Sensor Value: raw=");
   Serial.print(rawValue);
   Serial.print(" | moisture=");
@@ -84,7 +74,6 @@ void read_and_publish_sensor() {
   Serial.print("% | Payload: ");
   Serial.println(payload);
   
-  // Publish to MQTT
   if (client.publish(mqtt_topic, payload)) {
     Serial.println("✓ Data published successfully!");
   } else {
@@ -92,7 +81,6 @@ void read_and_publish_sensor() {
   }
 }
 
-// ===== Setup =====
 void setup() {
   Serial.begin(115200);
   delay(2000);
@@ -101,31 +89,27 @@ void setup() {
   Serial.println("=== OASIS ESP32 Soil Sensor ===");
   Serial.println("================================");
   
-  // Initialize sensor pin
   pinMode(SOIL_PIN, INPUT);
   
-  // Connect to WiFi
   setup_wifi();
   
-  // Setup MQTT
+  //  setup MQTT
   client.setServer(mqtt_server, mqtt_port);
   
   Serial.println("✓ Setup complete!\n");
 }
 
-// ===== Main Loop =====
 void loop() {
-  // Ensure MQTT connection
   if (!client.connected()) {
     reconnect();
   }
   client.loop();
   
-  // Read and publish sensor data every MSG_INTERVAL (2 seconds)
+  // read and publish sensor data every  2 seconds
   unsigned long now = millis();
   if (now - lastMsg > MSG_INTERVAL) {
     lastMsg = now;
     read_and_publish_sensor();
-    Serial.println();  // blank line for readability
+    Serial.println();  // blank line
   }
 }
