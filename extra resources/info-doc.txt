@@ -1,0 +1,1 @@
+we can use this directory to write a technical documentation in LaTeX.

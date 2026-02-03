@@ -1,0 +1,364 @@
+\documentclass[paper=a4,fontsize=12pt,ngerman]{scrartcl}
+
+\usepackage[utf8]{inputenc}				
+\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{subcaption}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage[a4paper,left=25mm,right=35mm,top=25mm,bottom=30mm]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage[expansion=false]{microtype}
+
+\geometry{a4paper, margin=1in}
+
+\lstset{ basicstyle=\ttfamily\footnotesize,
+keywordstyle=\color{blue},  commentstyle=\color{green!50!black},
+  stringstyle=\color{red},
+  frame=single, 
+  breaklines=true,
+  showstringspaces=false
+}
+
+\graphicspath{{graphics/}}
+
+\begin{document}
+
+\pagenumbering{roman}
+\pagestyle{plain}
+
+% Einbinden der Titelseite
+\include{title}
+
+% Hier ist der Abstract
+
+% Das Inhaltsverzeichnis
+\clearpage
+\tableofcontents 
+
+\clearpage
+\pagenumbering{arabic}
+
+\section{Introduction}
+
+\subsection{Motivation}
+Manual plant irrigation is often inefficient and inconsistent in practice. Irregular watering intervals or incorrectly estimated water quantities can lead to either resource wastage or an undersupply of water to the plants. 
+
+Furthermore, rainwater frequently remains unutilized, as manual extraction and distribution from water containers is a labor-intensive work. From a computer science perspective, this problem presents an ideal application for an IoT control system designed to eliminate these inefficiencies through automation and data-driven decision-making.
+
+\subsection{Project Description and Goals}
+The project \emph{OASIS} consists of an ESP32-based sensor and a Raspberry-Pi acting as a central control unit. The primary objective of this project is to implement and test a cost-effective automation system. The focus lies on maximizing the utilization of rainwater.
+
+The system is designed to ensure the following functionalities:
+
+\begin{itemize}
+    \item \textbf{Sensor Technology:} Deployment of two sensors to capture the system state. This includes measuring soil moisture as well as monitoring water levels.
+
+    \item \textbf{Weather API:} Utilization of an open-source web API to verify recent rain levels. This ensures that watering is disabled if rainfall has occured within the past few hours, thereby preventing over-watering.
+    
+    \item \textbf{Automated Control:} The system autonomously regulates plant irrigation based on sensor data.
+
+    \item \textbf{Overflow Management:} The system monitors the water level in the collection tank to detect and regulate potential overflows.
+\end{itemize}
+The data collected by the sensors and the ESP32 is stored locally on an InfluxDB, which can then be connected to a Grafana Dashboard, that visualizes the data.
+
+\subsection{Scope}
+The current scope of this project is limited to demonstrating the complete system logic using a miniaturized model. This model serves as a proof of concept, intended to validate the fundamental control logic and the technical architecture. The successful operation of this model forms the basis for scaling the system to a real-world garden.
+
+\section{System Design}
+To structure the system in a clear and scalable way, the project follows the 3-Layer IoT architecture model, consisting of a Perception, Network and Application Layer.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{graphics/IOT_Layers.png}
+        \caption{IOT-Layers}
+\end{figure}
+
+This model is wildly used in IoT Systems because it seperates responsibilities, reduces system complexity and decision making logic can be clearly seperated.
+
+\subsection{Perception Layer}
+\subsubsection{Components}
+\begin{itemize}
+    \item \textbf{Soil moisture sensor:} measures the moisture level in the soil
+    \item \textbf{ESP32:} reads the sensor values and converts them into usuable percentage
+    \item \textbf{Pump und relay}: Executes the watering action based on control commands
+\end{itemize}
+\subsubsection{Responsibilities}
+\begin{itemize}
+    \item Capture environmental data
+    \item Perform low level processing
+    \item Execute actuator commands
+\end{itemize}
+
+\subsection{Network Layer}
+\subsubsection{Components}
+\begin{itemize}
+    \item \textbf{WiFi-Connection:} Sets the connection between the ESP32 and the Internet
+    \item \textbf{MQTT Protocol and HiveMQ Broker: }  routes messages between publisher(ESP32) and subscriber/publisher(Raspberry Pi)
+\end{itemize}
+
+\subsubsection{Responsibilities}
+\begin{itemize}
+    \item Reliable message and data transport using MQTT  topics
+    \item Enables publish and subscribe communication
+\end{itemize}
+
+\subsection{Application Layer}
+\subsubsection{Components}
+\begin{itemize}
+    \item \textbf{Raspberry-Pi:} runs the control logic 
+    \item \textbf{InfluxDB:} stores sensor measurements
+    \item \textbf{WeatherAPI:} provides weather data
+\end{itemize}
+\subsubsection{Responsibilities}
+\begin{itemize}
+    \item Persist sensor data in database
+    \item Retrieve weather data and combine it with sensor readings. Decide if irrigation is allowed
+    \item Publish PUMP ON/OFF commands back to the esp
+\end{itemize}
+
+\section{Technical Description of the Project}
+
+\subsection{System Architecture}
+This subsection outlines the hardware and the software components used in the perception and application layer. 
+
+\subsection{Hardware Setup}
+
+\subsection{Software Structure}
+
+\subsection{Communication and Data Flow}
+
+\section{Build and Setup Guide}
+
+\newpage
+
+\subsection{Bill of Materials}
+
+
+
+\begin{table}[H]
+    \centering
+    \footnotesize
+    % tabularx set to \textwidth fills the page width exactly
+    % 'X' columns expand to fill the empty space automatically
+    \begin{tabularx}{\textwidth}{|l|X|c|l|c|}
+    
+    \hline
+        \textbf{Name} & \textbf{Usage} & \textbf{Quantity} & \textbf{Acquired By} & \textbf{Cost}\\
+    \hline
+        Large Project Enclosure & Project Case & 1 & Micha{\l} & 15 \\
+    \hline
+        Small Project Enclosure & Project Case & 1 & Micha{\l} & 10 \\
+    \hline
+        11L water tank & Water saving tank & 1 & Micha{\l} & 19 \\
+    \hline
+        3L water tank & Simulation of rainwater & 1 & Micha{\l} & 10 \\
+    \hline
+       Phoenix contact terminal blocks & Safe Distribution of DC Voltages & 6 & Micha{\l} & Pre-Owned \\
+    \hline
+        mounting rails  & mounting of terminal blocks & 1 & Micha{\l} & Pre-Owned \\
+    \hline
+       mounting screws  & mounting of sensors \& base plates & 20 & Micha{\l} & Pre-Owned \\
+    \hline
+        Water valve & actuating the rainwater & 1 & Micha{\l} & 3 \\
+    \hline
+        ESP32 Breadboard Kit & Bits and Pieces & 1 & Micha{\l} & 23 \\
+    \hline
+       DC jack connectors & Power supply to the project & 1 & Micha{\l} & 8 \\
+    \hline
+       Custom wooden base plate & mounting base for sensors \& rails & 2 & Micha{\l} & Created \\
+    \hline
+       TL231 & 24V DC water pressure sensor & 1 &EmRoLab  & Given \\
+    \hline
+       HW-685 & 5V DC Voltage-Amperage Converter & 1 & EmRoLab & Given \\  
+    \hline
+       Capacitive moisture sensor v1.2 & Soil moisture monitoring & 1 & EmRoLab & Given \\  
+    \hline
+       12V DC water Pump  & pumping water from water tank to plants & 1 & EmRoLab & Given \\  
+    \hline
+       12V DC Solenoid Valve  & 3-Way diverter to either tank or drain & 1 & Micha{\l} & 15 \\  
+    \hline
+       230V Relay  & Used to relay Voltage to Pump and Solenoid Valve & 2 & EmRoLab & Given \\  
+    \hline
+       5V DC Power Supply & Supply Power to Esp and Relays & 1 & Micha{\l} & Pre-Owned \\  
+    \hline
+       12V DC Power Supply & Supply Power to Pump and Solenoid Valve & 1 & EmRoLab & Given \\  
+    \hline
+       24V DC Power Supply & Supply Power to TL231 & 1 & EmRoLab & Given \\
+    \hline
+
+
+    \end{tabularx}
+    
+    \caption{Bill of Materials}
+    
+    \label{tab:bom}
+    
+\end{table}\
+
+
+\subsection{Wiring and Assembly}
+
+\subsection{Firmware Upload}
+
+\subsection{Commissioning / Initial Startup}
+
+\subsection{Troubleshooting}
+
+\section{Work Distribution (Group Work)}
+\subsection{Roles and Responsibilities}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|p{6cm}|p{5cm}|c|}
+    \hline
+         Team Member & Responsibilities & Tools & Effort  \\
+         \hline
+         Hanan & Software Implementation and Documentation & Raspberry Pi, Grafana, InfluxDB, \LaTeX   & \\
+         \hline
+         Micha{\l} & Hardware and Software Implementation, Documentation  & Power Tools, Sensors, Electrical circuits, \LaTeX  & \\
+         \hline
+         Laith & Software Implementation & Raspberry Pi and Python Scripts & \\
+         \hline
+         Omar & Software Implementation & Raspberry Pi and Python Scripts & \\
+         \hline
+    \end{tabular}
+    \caption{Task Distribution und Effort}
+    \label{tab:placeholder}
+\end{table}
+
+\subsection{Individual Contributions}
+Here, each team members individual contributions are presented. The respective contribution reflects their share of the total workload.
+
+\subsubsection{Omar Qoul}
+
+\subsubsection{Laith Arafeh}
+
+\subsubsection{Hanan Ahmed Ashir}
+Responsible for the Software implementation of the project. This included dividing the work among all the team members. I also set up and configured InfluxDB on the raspberry Pi, including managing the sensor data, integrating Grafana for the visualization of  time-series data, and incorporating the WeatherAPI to enable the watering decisions.
+
+\subsubsection{Micha{\l} Roziel}
+Picked up the hardware components which the \textit{EmRoLab} team provided us with. Bought and provided additional hardware components listed in the bill of materials. \\
+
+Created custom wooden base plates for both hardware enclosures by using power as well as precision (woodworking) tools. \\
+
+Drilled holes into both project enclosures to fit previously mentioned base plates and self soldered DC-Jack connectors. Connected all of the wiring found in the project. \newline
+
+Tested, connected, assembled and installed all of the hardware used in the project. \\
+Sensor testing was done by using a high fidelity Fluke multimeter.\\
+Set up a GitHub repository \url{https://github.com/michalroziel/oasis} for collaboration purposes and developed code to test out the functionality of all sensors used in the project. Contributed to the establishing of communication between the ESP32 and Raspberry Pi via MQTT. \\
+
+Created In-depth project schematic showcasing internal logic and electrical connections.\\
+Contributed to all project presentations throughout the course. Contributed to collaborative project documentation using \LaTeX.
+
+\section{Outlook and Lessons Learned}
+
+\subsection{Future Improvements}
+
+As a future improvement, the system could be deployed on a remote server instead of running exclusively on a local Raspberry Pi. This would enable remote access to sensor data and system status, increase scalability and allow the project to be maintained as an open source solution. By publishing the data other users and developers could reuse and extend the system for their own applications.
+
+Additional improvements could include the integration of further environmental sensors and use of weather forecasts in addition to the historical rainfall data to further optimize irrigation decisions.
+
+\subsection{Lessons Learned}
+
+\begin{itemize}
+    \item During the development of the system, the team gained practical experience in handling different DC voltage levels (5V, 12V and 24V). To ensure safe and reliable connections, Phoenix Contact terminal blocks were used. Working with these components and wiring the OASIS System provided a fundamental understanding of basic engineering principles, such as voltage separation, grounding and safe power distribution.
+
+    \item Furthermore, implementing communication between the ESP32 and the raspberry Pi using the MQTT publish/subscribe model significantly improved the teams understanding of system architecture.
+    
+    \item A practical limitation that we encountered during the project was related to the network accessibility. Since Grafana and InfluxDB were configured to run on the raspberryPi using localhost bindings, access to the dashboard was only possible within the local network. As a result, connections via public or university WiFi networks were not feasible without additional configuration, for which we had little to no time.
+\end{itemize}
+
+\section{References / Sources}
+Here, the reader is presented with the sources that allowed our team to collect the knowledge needed to complete each task at hand.
+
+\subsection{Images}
+Here, the reader is shown pictures of OASIS during its development process.
+
+\begin{figure}[p]  
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth, angle=-90]{dev-1.jpeg} 
+        \caption{start of assembly}
+    \end{subfigure}
+    \hfill 
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth, angle=-270]{dev-3.jpeg}
+        \caption{wooden enclosure baseplate}
+    \end{subfigure}
+
+    \vspace{0.1cm} % Minimal vertical gap to save space
+
+    % --- ROW 2: Landscape (Dev 2 & Dev 4) ---
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{dev-2.jpeg}
+        \caption{in the workshop}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{dev-4.jpeg}
+        \caption{Phoenix Contact terminals blocks}
+    \end{subfigure}
+
+    \vspace{0.1cm} % Minimal gap
+
+    % --- ROW 3: Final Image (Dev 5) ---
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth, angle=-90]{dev-5.jpeg}
+        \caption{first wiring using soldered DC connectors}
+    \end{subfigure}
+
+    \caption{Initial development phase}
+\end{figure}
+
+\newpage
+\subsection{Quotes / Citations}
+
+
+
+
+\begin{itemize}
+    
+    \item \textbf{Turais Tech Docs}, \textit{Turais TL231 technical documentation}. Available at: \url{https://docs.turais.de/docs/sensors/misc/tl231-water-level-sensor/} \\
+    (Accessed: \today).
+
+    \item \textbf{Turais Tech Docs}, \textit{Turais HW-685 technical documentation}. Available at: \url{https://docs.turais.de/de/docs/modules/hw685/} \\(Accessed: \today).
+    
+    \item \textbf{Polulu Docs}, \textit{Polulu MAX14870 technical documentation}. Available at: \url{https://www.pololu.com/product/2961} \\
+    (Accessed: \today).
+
+    \item \textbf{Circuit State Docs}, \textit{Curcuit State ESP32 technical documentation}. Available at: \url{https://www.circuitstate.com/pinouts/doit-esp32-devkit-v1-wifi-development-board-pinout-diagram-and-reference/} \\
+    (Accessed: \today).
+
+    
+    \item \textbf{How to Mechatronics }, \textit{YouTube tutorial on Controlling a DC Motor using H-Bridge}. Available at: \url{https://www.youtube.com/watch?v=I7IFsQ4tQU8} \\
+    (Accessed: \today).
+    
+\end{itemize}
+
+\subsection{AI Tools Used}
+
+Generative AI was used to help generate \LaTeX \: code for figures to incorporate project pictures on a single page.
+
+
+\subsection{Other Resources}
+
+
+
+
+
+% Hier beginnt der Anhang
+\clearpage
+\appendix
+\end{document}
+
