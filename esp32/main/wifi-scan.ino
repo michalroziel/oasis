@@ -1,4 +1,4 @@
-// wifi.ino — WiFi scanning module
+// wifi.ino wifi scanning module
 
 #include <WiFi.h>
 
@@ -22,5 +22,5 @@ void wifi_init() {
 }
 
 void wifi_update() {
-  // Empty - scanner only runs once at startup
+  // scanner only runs once at startup
 }
