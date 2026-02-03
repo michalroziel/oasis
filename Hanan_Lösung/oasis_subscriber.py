@@ -5,16 +5,16 @@ import requests
 from datetime import datetime, timedelta
 
 # =============================
-# MQTT CONFIG
-# =============================
+#   MQTT config
+
 BROKER = "broker.hivemq.com"
 PORT = 1883
 SOIL_TOPIC = "esp/moisture"
 CONTROL_TOPIC = "esp/water"
 
 # =============================
-# INFLUXDB CONFIG
-# =============================
+# influx configur
+
 influx_client = InfluxDBClient(
     host="192.168.0.102",
     port=8086,
@@ -24,20 +24,20 @@ influx_client = InfluxDBClient(
 )
 
 # =============================
-# WEATHERAPI CONFIG
-# =============================
+#  api config
+
 API_KEY = "4060c9375e3b4b4b9c8203235262601"
 LAT, LON = 49.238, 6.997
 PAST_RAIN_HOURS = 12
 
-# =============================
-# IRRIGATION LOGIC
-# =============================
-SOIL_MOISTURE_THRESHOLD = 30  # %
+# ==============================
+# irrigation logic
+
+SOIL_MOISTURE_THRESHOLD = 30  
 
 # =============================
-# CHECK RAIN IN LAST 12 HOURS
-# =============================
+#  check if it rained last 12 hrs
+
 def rained_in_last_12_hours():
     try:
         url = (
@@ -68,8 +68,8 @@ def rained_in_last_12_hours():
         return False
 
 # =============================
-# DECISION LOGIC
-# =============================
+#   decision logic
+
 def should_water(moisture_percent):
     if moisture_percent < SOIL_MOISTURE_THRESHOLD:
         if rained_in_last_12_hours():
@@ -83,8 +83,8 @@ def should_water(moisture_percent):
         return False
 
 # =============================
-# MQTT CALLBACKS
-# =============================
+# MQTT callbakcs
+
 def on_connect(client, userdata, flags, rc, properties=None):
     print("Connected to MQTT broker")
     client.subscribe(SOIL_TOPIC)
@@ -99,7 +99,7 @@ def on_message(client, userdata, msg):
 
         print(f"Moisture received → Raw: {raw}, Moisture: {moist}%")
 
-        # Save to InfluxDB
+        # save to influc
         influx_client.write_points([
             {
                 "measurement": "soil_moisture",
@@ -111,7 +111,6 @@ def on_message(client, userdata, msg):
             }
         ])
 
-        # Decision
         if should_water(moist):
             client.publish(CONTROL_TOPIC, "ON", retain=True)
             print("MQTT → PUMP ON")
@@ -123,8 +122,8 @@ def on_message(client, userdata, msg):
         print("MQTT message error:", e)
 
 # =============================
-# MQTT CLIENT SETUP
-# =============================
+# MQTT client set  up
+
 client = mqtt.Client(client_id="Pi_Irrigation_Controller", protocol=mqtt.MQTTv5)
 client.on_connect = on_connect
 client.on_message = on_message
