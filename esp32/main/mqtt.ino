@@ -57,7 +57,7 @@ void mqtt_update() {
     reconnect();
   }
 
-  // Needed to maintain the MQTT connection and process packets.
+  // needed to maintain the MQTT connection and process our packets
 
   client.loop(); 
 
