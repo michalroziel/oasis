@@ -22,7 +22,7 @@ influx_client = InfluxDBClient(
 )
 
 SOIL_MOISTURE_THRESHOLD = 60
-
+# this is commmented out because we cant rely on weather to be dry during the demo
 """
 def rained_in_last_12_hours():
     # TESTING MODE: no WeatherAPI calls
@@ -66,7 +66,6 @@ def write_water_to_influx(raw: int, percent: int):
 
 
 def control_irrigation(client, moisture_percent):
-    # Pump ON only when soil dry. Pi sends ON; ESP only runs pump if tank is full (simstate).
     print(f"Checking moisture: {moisture_percent}% (Threshold: {SOIL_MOISTURE_THRESHOLD}%)")
     if moisture_percent < SOIL_MOISTURE_THRESHOLD:
         print(">>> DECISION: Soil Dry -> Send ON (pump runs on ESP only if tank full)")
@@ -82,18 +81,12 @@ def on_message(client, userdata, msg):
         payload = msg.payload.decode()
         data = json.loads(payload)
 
-        # -------------------------
-        # Soil Moisture Message
-        # -------------------------
         if msg.topic == SOIL_TOPIC:
             raw = int(data["raw"])
             moist = int(data["moist"])
 
             print(f"[SOIL] Raw: {raw}, Moisture: {moist}%")
             write_soil_to_influx(raw, moist)
-
-            # !!! FIX: THIS LINE WAS MISSING !!!
-            # This actually triggers the pump logic
             control_irrigation(client, moist)
 
         elif msg.topic == WATER_TOPIC:
@@ -105,7 +98,6 @@ def on_message(client, userdata, msg):
                 print(">>> DECISION: Tank full -> Valve OFF (drain)")
             else:
                 print(">>> DECISION: Tank not full -> Valve ON (to tank)")
-            # Tank empty -> send OFF so pump turns off (ESP only turns off on OFF command)
             if percent <= 0:
                 print(">>> DECISION: Tank EMPTY -> Send OFF so pump turns off")
                 client.publish(PUMP_TOPIC, "OFF", retain=True)
