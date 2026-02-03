@@ -3,8 +3,9 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 
-static const char* ssid       = "TP-LINK_936A";
-static const char* password   = "39429964";
+
+static const char* ssid       = "iPhone 14";
+static const char* password   = "Laith2003";
 static const char* mqtt_server = "broker.hivemq.com";
 static const int   mqtt_port   = 1883;
 
@@ -97,7 +98,7 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   String topicString = String(topic);
 
   if (topicString == topic_pump_cmd) {
-    if (msgString == "ON") {
+    if (msgString == "ON" && getSimState()) {
       pump_on();
     } else if (msgString == "OFF") {
       pump_off();

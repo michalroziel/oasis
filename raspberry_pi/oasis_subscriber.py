@@ -66,15 +66,14 @@ def write_water_to_influx(raw: int, percent: int):
 
 
 def control_irrigation(client, moisture_percent):
+    # Pump ON only when soil dry. Pi sends ON; ESP only runs pump if tank is full (simstate).
     print(f"Checking moisture: {moisture_percent}% (Threshold: {SOIL_MOISTURE_THRESHOLD}%)")
-    
     if moisture_percent < SOIL_MOISTURE_THRESHOLD:
-        print(">>> DECISION: Soil Dry -> Turn ON Water")
+        print(">>> DECISION: Soil Dry -> Send ON (pump runs on ESP only if tank full)")
         client.publish(VALVE_TOPIC, "ON", retain=True)
         client.publish(PUMP_TOPIC, "ON", retain=True)
     else:
-        # IMPORTANT: You must send OFF, otherwise the pump never stops!
-        print(">>> DECISION: Soil Sufficient -> Turn OFF Water")
+        print(">>> DECISION: Soil Sufficient -> Send OFF")
         client.publish(VALVE_TOPIC, "OFF", retain=True)
         client.publish(PUMP_TOPIC, "OFF", retain=True)
 
@@ -101,11 +100,15 @@ def on_message(client, userdata, msg):
             raw = int(data["raw"])
             percent = int(data["percent"])
 
-            print(f"[WATER] Raw: {raw}, Level: {percent}%")
+            print(f"[WATER] Raw: {raw}, Level: {percent}% (simstate: full=100, empty=0)")
             if percent >= 100:
                 print(">>> DECISION: Tank full -> Valve OFF (drain)")
             else:
                 print(">>> DECISION: Tank not full -> Valve ON (to tank)")
+            # Tank empty -> send OFF so pump turns off (ESP only turns off on OFF command)
+            if percent <= 0:
+                print(">>> DECISION: Tank EMPTY -> Send OFF so pump turns off")
+                client.publish(PUMP_TOPIC, "OFF", retain=True)
             write_water_to_influx(raw, percent)
 
         else:

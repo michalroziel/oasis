@@ -1,66 +1,67 @@
-// main/tl231.ino — Water Level Sensor Module (Calibrated)
+// main/tl231.ino — Water Level Sensor Module (SIMULATED FOR DEMO)
 
 const int PIN_LEVEL_SENSOR = 34; 
 
-// -- VALUES FOR EMPTY AND FULL --
+bool simState = false;
+static unsigned long lastToggle = 0;
 
-const int LEVEL_EMPTY = 20;  
-const int LEVEL_FULL  = 1000; 
+// const int LEVEL_EMPTY = 20;   // [COMMENTED OUT FOR DEMO]
+// const int LEVEL_FULL  = 3000; // [COMMENTED OUT FOR DEMO]
 
 static int currentLevelPercent = 0;
-static int lastLevelRaw = 0;
+// static int lastLevelRaw = 0;  // [COMMENTED OUT FOR DEMO]
 
 void tl231_init() {
   pinMode(PIN_LEVEL_SENSOR, INPUT);
-  Serial.println(" TL231 initilized - Starting ");
+  Serial.println(" TL231 (Simulated) initialized - Starting ");
 }
 
 void tl231_update() {
-  static unsigned long lastRead = 0;
-  
-  // Read every 500ms
+  // - - - - - - - SIMULATION LOGIC START - - - - - - - - 
 
+
+  // Toggle every 10 seconds (10000ms)
+  if (millis() - lastToggle > 10000) {
+    lastToggle = millis();
+    simState = !simState; // Flip state
+
+    if (simState) {
+      currentLevelPercent = 100; // Force FULL
+      Serial.println("\n[SIMULATOR] Tank is now FULL (100%)");
+
+    } else {
+      currentLevelPercent = 0;   // Force EMPTY
+      Serial.println("\n[SIMULATOR] Tank is now EMPTY (0%)");
+    }
+  }
+  // - - - - - - - SIMULATION LOGIC END - - - - - - - - 
+
+  /* 
+  static unsigned long lastRead = 0;
   if (millis() - lastRead > 500) {
     lastRead = millis();
-
-    // as our tank is small and we cannot amplify the 
-    // signal further, we average
-    // 1. Take 10 readings and average them - smooth 
-
     long sum = 0;
-
-    for(int i=0; i<10; i++){
-
-      int reading = analogRead(PIN_LEVEL_SENSOR);
-
-      sum +=  reading;
-      delay(5); 
-    }
-
-    int averageRaw = (int)(sum / 10.0);
-    
-    lastLevelRaw = averageRaw;
-
-    // Just like the CMS convert into percent
-    // 
-    int percent = map(averageRaw, LEVEL_EMPTY, LEVEL_FULL, 0, 100);
+    lastLevelRaw = analogRead(PIN_LEVEL_SENSOR);
+    int percent = map(lastLevelRaw, LEVEL_EMPTY, LEVEL_FULL, 0, 100);
     currentLevelPercent = constrain(percent, 0, 100);
-
-    // Print for debugging
+    
     Serial.print("[ TL 231 ] Raw: ");
-    Serial.print(averageRaw);
+    Serial.print(lastLevelRaw);
     Serial.print(" | Level: ");
     Serial.print(currentLevelPercent);
     Serial.println("%");
   }
+  */
 }
 
-// Helper function for other modules to read TL231
+bool getSimState(){
+  return simState;
+}
 
 int tl231_getLevel() {
   return currentLevelPercent;
 }
 
 int tl231_getRaw(){
-  return lastLevelRaw;
+  return 0; // return dummy value
 }

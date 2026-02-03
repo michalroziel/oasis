@@ -1,31 +1,33 @@
-// main.ino — single entry point for the whole sketch
+  // main.ino — single entry point for the whole sketch
 
-#define PIN_RELAY 13  // relay pin (used by pump.ino and mqtt.ino)
+  #define PIN_RELAY 13  // relay pin (used by pump.ino and mqtt.ino)
 
-void setup() {
-  Serial.begin(115200);
-  delay(200);
+  bool getSimState();
 
-  Serial.println("\n=== OASIS System Starting... ===\n");
+  void setup() {
+    Serial.begin(115200);
+    delay(200);
 
-  // 1. Init Communication first (so we can get commands)
-  wifi_init();
-  mqtt_init();
+    Serial.println("\n=== OASIS System Starting... ===\n");
 
-  // 2. Init Sensors
-  moisture_init();
-  tl231_init();
+    // 1. Init Communication first (so we can get commands)
+    wifi_init();
+    mqtt_init();
 
-  // 3. Init Actuators
-  pump_init();
-  diverter_init();
+    // 2. Init Sensors
+    moisture_init();
+    tl231_init();
 
-  Serial.println("\n=== OASIS System Ready & Online ===\n");
-}
+    // 3. Init Actuators
+    pump_init();
+    diverter_init();
 
-void loop() {
-  moisture_update();
-  tl231_update();
-  mqtt_update();
-  diverter_update();
-}
+    Serial.println("\n=== OASIS System Ready & Online ===\n");
+  }
+
+  void loop() {
+    moisture_update();
+    tl231_update();
+    mqtt_update();
+    diverter_update();
+  }
