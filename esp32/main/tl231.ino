@@ -1,15 +1,15 @@
-// main/tl231.ino — Water Level Sensor Module (SIMULATED FOR DEMO)
+// main/tl231.ino water level sensor module (SIMULATED FOR DEMO)
 
 const int PIN_LEVEL_SENSOR = 34; 
 
 bool simState = false;
 static unsigned long lastToggle = 0;
 
-// const int LEVEL_EMPTY = 20;   // [COMMENTED OUT FOR DEMO]
-// const int LEVEL_FULL  = 3000; // [COMMENTED OUT FOR DEMO]
+// const int LEVEL_EMPTY = 20;   
+// const int LEVEL_FULL = 3000; 
 
 static int currentLevelPercent = 0;
-// static int lastLevelRaw = 0;  // [COMMENTED OUT FOR DEMO]
+// static int lastLevelRaw = 0;  
 
 void tl231_init() {
   pinMode(PIN_LEVEL_SENSOR, INPUT);
@@ -17,25 +17,23 @@ void tl231_init() {
 }
 
 void tl231_update() {
-  // - - - - - - - SIMULATION LOGIC START - - - - - - - - 
 
-
-  // Toggle every 10 seconds (10000ms)
+  //   toggle  10 sec
   if (millis() - lastToggle > 10000) {
     lastToggle = millis();
-    simState = !simState; // Flip state
+    simState = !simState; 
 
     if (simState) {
-      currentLevelPercent = 100; // Force FULL
+      currentLevelPercent = 100; 
       Serial.println("\n[SIMULATOR] Tank is now FULL (100%)");
 
     } else {
-      currentLevelPercent = 0;   // Force EMPTY
+      currentLevelPercent = 0; 
       Serial.println("\n[SIMULATOR] Tank is now EMPTY (0%)");
     }
   }
-  // - - - - - - - SIMULATION LOGIC END - - - - - - - - 
-
+  
+// commented out the  logic for the pressure sens, kept because still usable on a larger tank
   /* 
   static unsigned long lastRead = 0;
   if (millis() - lastRead > 500) {
