@@ -1,7 +1,7 @@
 <div align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="./assets/graphics/htw_logo_dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="./assets/graphics/htw_logo.png">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/graphics/htw_logo_whitebg.png">
     <img alt="HTW Logo" src="./assets/graphics/htw_logo.png" width="300">
   </picture>
   <br><br>
