@@ -3,40 +3,28 @@
 \contentsline {subsection}{\numberline {1.1}Motivation}{1}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Project Description and Goals}{1}{subsection.1.2}%
 \contentsline {subsection}{\numberline {1.3}Scope}{1}{subsection.1.3}%
-\contentsline {section}{\numberline {2}System Design}{1}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Perception Layer}{2}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.1}Components}{2}{subsubsection.2.1.1}%
-\contentsline {subsubsection}{\numberline {2.1.2}Responsibilities}{2}{subsubsection.2.1.2}%
-\contentsline {subsection}{\numberline {2.2}Network Layer}{2}{subsection.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.1}Components}{2}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}Responsibilities}{2}{subsubsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.3}Application Layer}{2}{subsection.2.3}%
-\contentsline {subsubsection}{\numberline {2.3.1}Components}{2}{subsubsection.2.3.1}%
-\contentsline {subsubsection}{\numberline {2.3.2}Responsibilities}{3}{subsubsection.2.3.2}%
-\contentsline {section}{\numberline {3}Technical Description of the Project}{3}{section.3}%
-\contentsline {subsection}{\numberline {3.1}System Architecture}{3}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Hardware Setup}{3}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Software Structure}{3}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Communication and Data Flow}{3}{subsection.3.4}%
-\contentsline {section}{\numberline {4}Build and Setup Guide}{3}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Bill of Materials}{4}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Wiring and Assembly}{5}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Firmware Upload}{5}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Commissioning / Initial Startup}{5}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Troubleshooting}{5}{subsection.4.5}%
-\contentsline {section}{\numberline {5}Work Distribution (Group Work)}{5}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Roles and Responsibilities}{5}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Individual Contributions}{5}{subsection.5.2}%
-\contentsline {subsubsection}{\numberline {5.2.1}Omar Qoul}{5}{subsubsection.5.2.1}%
-\contentsline {subsubsection}{\numberline {5.2.2}Laith Arafeh}{5}{subsubsection.5.2.2}%
-\contentsline {subsubsection}{\numberline {5.2.3}Hanan Ahmed Ashir}{5}{subsubsection.5.2.3}%
-\contentsline {subsubsection}{\numberline {5.2.4}Micha{\l } Roziel}{5}{subsubsection.5.2.4}%
-\contentsline {section}{\numberline {6}Outlook and Lessons Learned}{6}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Future Improvements}{6}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Lessons Learned}{6}{subsection.6.2}%
-\contentsline {section}{\numberline {7}References / Sources}{7}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Images}{7}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Quotes / Citations}{9}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}AI Tools Used}{9}{subsection.7.3}%
-\contentsline {subsection}{\numberline {7.4}Other Resources}{9}{subsection.7.4}%
+\contentsline {section}{\numberline {2}System Architecture and Technical Description}{1}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Hardware Setup}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Software Structure}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Communication and Data Flow}{4}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Build and Setup Guide}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Bill of Materials}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Wiring and Assembly}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Firmware Upload}{6}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Initial Startup and Commissioning}{6}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Troubleshooting}{6}{subsection.3.5}%
+\contentsline {section}{\numberline {4}Work Distribution (Group Work)}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Roles and Responsibilities}{6}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Individual Contributions}{7}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Omar Qoul}{7}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Laith Arafeh}{7}{subsubsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.3}Hanan Ahmed Ashir}{7}{subsubsection.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.4}Micha{\l } Roziel}{7}{subsubsection.4.2.4}%
+\contentsline {section}{\numberline {5}Outlook and Lessons Learned}{8}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Future Improvements}{8}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Lessons Learned}{8}{subsection.5.2}%
+\contentsline {section}{\numberline {6}References}{9}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Images}{9}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Quotes / Citations}{11}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}AI Tools}{11}{subsection.6.3}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
