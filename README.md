@@ -1,23 +1,19 @@
-<div class="titlepage">
+<div align="center">
+  <img src="./assets/graphics/htw_logo.png" width="300" />
+  <br><br>
 
-<embed src="./assets/graphics/htw_logo.pdf" />
+  <h1>OASIS: Optimized Aqua Soil Irrigation System</h1>
 
-<div class="center">
+  <p>
+    By<br>
+    Michał Roziel, 5012845<br>
+    Hanan Ahmed Ashir, 5012967<br>
+    Laith Arafeh, 5024761<br>
+    Omar Qoul, 5024765
+  </p>
 
-**OASIS: Optimized Aqua Soil Irrigation System**
-
-By  
-Michał Roziel, 5012845  
-Hanan Ahmed Ashir, 5012967  
-Laith Arafeh, 5024761  
-Omar Qoul, 5024765
-
-Saarbrücken, 04.02.2026
-
+  <p>Saarbrücken, 04.02.2026</p>
 </div>
-
-</div>
-
 # Introduction
 
 ## Motivation
@@ -77,11 +73,8 @@ software components and the communication between them. As a result, the
 actual system behavior and data flow are easier to understand and
 directly reflect the implemented solution.
 
-<figure id="fig:placeholder" data-latex-placement="H">
-<img src="./assets/graphics/Architecture_updated.png"
-style="width:75.0%" />
-<figcaption>Architecture of OASIS</figcaption>
-</figure>
+<h3>Architecture of OASIS</h3>
+<img src="./assets/graphics/Architecture_updated.png" width="100%">
 
 ## Hardware Setup
 
@@ -103,11 +96,11 @@ ESP32 outputs sensor readings to the serial monitor in real time.
 <figure id="fig:hardware-setup" data-latex-placement="H">
 <figure>
 <img src="./assets/graphics/water_level_sensor.jpg" />
-<figcaption>Water level Sensor</figcaption>
+<figcaption>Water Pressure sensor</figcaption>
 </figure>
 <figure>
 <img src="./assets/graphics/strom_sensor_modul.jpg" />
-<figcaption>HW-685 Amperage to Voltage converter</figcaption>
+<figcaption>W-685 Amperage to Voltage converter</figcaption>
 </figure>
 <figcaption>Components used during hardware assembly</figcaption>
 </figure>
@@ -145,18 +138,12 @@ dashboards. In addition, the Raspberry Pi integrates the WeatherAPI to
 retrieve historical rainfall data, which is used to make even better
 decisions.
 
-<figure id="fig:placeholder" data-latex-placement="H">
-<img src="./assets/graphics/Grafana-Soil_Measure.png"
-style="width:75.0%" />
-<figcaption>Visualization of Soil Measurements using
-Grafana</figcaption>
-</figure>
+<h3>Visualization of Soil Measurements using Grafana</h3>
+<img src="./assets/graphics/Grafana-Soil_Measure.png" width="100%">
+<br><br>
 
-<figure id="fig:placeholder" data-latex-placement="H">
-<img src="./assets/graphics/Water_Level_Sensor.png"
-style="width:75.0%" />
-<figcaption>Visualization of Water Tank Level using Grafana</figcaption>
-</figure>
+<h3>Visualization of Water Tank Level using Grafana</h3>
+<img src="./assets/graphics/Water_Level_Sensor.png" width="100%">
 
 ## Communication and Data Flow
 
