@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/graphics/htw_logo_final.png" width="500" alt="HTW Saar Logo" />
+  <img src="./assets/graphics/htw_logo_simple.png" width="600" alt="HTW Saar Logo" />
   <br><br>
 
   <h1>OASIS: Optimized Aqua Soil Irrigation System</h1>
