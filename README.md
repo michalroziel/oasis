@@ -1,5 +1,9 @@
 <div align="center">
-  <img src="./assets/graphics/htw_logo.png" width="300" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/graphics/htw_logo_dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/graphics/htw_logo.png">
+    <img alt="HTW Logo" src="./assets/graphics/htw_logo.png" width="300">
+  </picture>
   <br><br>
 
   <h1>OASIS: Optimized Aqua Soil Irrigation System</h1>
@@ -14,6 +18,7 @@
 
   <p>Saarbrücken, 04.02.2026</p>
 </div>
+
 # Introduction
 
 ## Motivation
