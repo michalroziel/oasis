@@ -1,9 +1,5 @@
 <div align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./assets/graphics/htw_logo_dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="./assets/graphics/htw_logo_whitebg.png">
-    <img alt="HTW Logo" src="./assets/graphics/htw_logo.png" width="300">
-  </picture>
+  <img src="./assets/graphics/htw_logo_final.png" width="500" alt="HTW Saar Logo" />
   <br><br>
 
   <h1>OASIS: Optimized Aqua Soil Irrigation System</h1>
@@ -98,16 +94,18 @@ allows the system to physically execute irrigation actions based on
 received control commands. For monitoring and debugging purposes, the
 ESP32 outputs sensor readings to the serial monitor in real time.
 
+### Water Pressure sensor
 <figure id="fig:hardware-setup" data-latex-placement="H">
+
 <figure>
 <img src="./assets/graphics/water_level_sensor.jpg" />
-<figcaption>Water Pressure sensor</figcaption>
 </figure>
+
+### W-685 Amperage to Voltage converter
 <figure>
 <img src="./assets/graphics/strom_sensor_modul.jpg" />
-<figcaption>W-685 Amperage to Voltage converter</figcaption>
 </figure>
-<figcaption>Components used during hardware assembly</figcaption>
+
 </figure>
 
 The Raspberry Pi hosts the software components responsible for data
