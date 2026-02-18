@@ -289,12 +289,13 @@ INPUT ./graphics/strom_sensor_modul.jpg
 INPUT ./graphics/strom_sensor_modul.jpg
 INPUT ./graphics/strom_sensor_modul.jpg
 INPUT ./graphics/strom_sensor_modul.jpg
-INPUT ./oasis-schematic-v2 (1)_cropped.pdf
-INPUT ./oasis-schematic-v2 (1)_cropped.pdf
-INPUT ./oasis-schematic-v2 (1)_cropped.pdf
-INPUT ./oasis-schematic-v2 (1)_cropped.pdf
-INPUT ./oasis-schematic-v2 (1)_cropped.pdf
-INPUT ./oasis-schematic-v2 (1)_cropped.pdf
+INPUT ./oasis-schematic-v3.png
+INPUT ./oasis-schematic-v3.png
+INPUT ./oasis-schematic-v3.png
+INPUT ./oasis-schematic-v3.png
+INPUT ./oasis-schematic-v3.png
+INPUT ./oasis-schematic-v3.png
+INPUT ./oasis-schematic-v3.png
 INPUT ./graphics/Grafana-Soil_Measure.png
 INPUT ./graphics/Grafana-Soil_Measure.png
 INPUT ./graphics/Grafana-Soil_Measure.png
