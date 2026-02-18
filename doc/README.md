@@ -402,53 +402,69 @@ explanation of the system.
 
 ## Images
 
-<figure id="fig:gallery_page1" data-latex-placement="H">
-<figure id="fig:assembly_1">
-<img src="./assets/graphics/dev-1.jpeg" style="height:8cm" />
-<figcaption>Start of assembly</figcaption>
-</figure>
-<figure id="fig:assembly_2">
-<img src="./assets/graphics/dev-2.jpeg" style="height:8cm" />
-<figcaption>In the workshop</figcaption>
-</figure>
-<figure id="fig:assembly_3">
-<img src="./assets/graphics/dev-10.jpeg" style="height:8cm" />
-<figcaption>Drilling holes into enclosure</figcaption>
-</figure>
-<figure id="fig:assembly_4">
-<img src="./assets/graphics/dev-9.jpeg" style="height:8cm" />
-<figcaption>Wooden enclosure baseplate </figcaption>
-</figure>
-<figcaption>Hardware Assembly Process (Part 1)</figcaption>
-</figure>
-
-<figure id="fig:gallery_page1" data-latex-placement="p">
-<figure id="fig:assembly_1">
-<img src="./assets/graphics/dev-4.jpeg" style="height:5cm" />
-<figcaption>mounting terminal blocks</figcaption>
-</figure>
-<figure id="fig:assembly_2">
-<img src="./assets/graphics/dev-8.jpeg" style="height:5cm" />
-<figcaption>aluminum mounting plate</figcaption>
-</figure>
-<figure id="fig:assembly_3">
-<img src="./assets/graphics/dev-7.jpeg" style="height:5cm" />
-<figcaption>Soldering of connections</figcaption>
-</figure>
-<figure id="fig:assembly_4">
-<img src="./assets/graphics/dev-5.jpeg" style="height:5cm" />
-<figcaption>Wiring terminal blocks</figcaption>
-</figure>
-<figure id="fig:assembly_5">
-<img src="./assets/graphics/dev-6.jpeg" style="height:5cm" />
-<figcaption>electrical wiring</figcaption>
-</figure>
-<figure id="fig:assembly_6">
-<img src="./assets/graphics/dev-12.jpg" style="height:5cm" />
-<figcaption>finished project</figcaption>
-</figure>
-<figcaption>Hardware Assembly Process (Part 2)</figcaption>
-</figure>
+<h3>Hardware Assembly Process</h3>
+<table>
+  <tr>
+    <td width="50%">
+      <img src="./assets/graphics/dev-1.jpeg" width="100%">
+      <br>
+      <b>Start of assembly</b>
+    </td>
+    <td width="50%">
+      <img src="./assets/graphics/dev-2.jpeg" width="100%">
+      <br>
+      <b>In the workshop</b>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="./assets/graphics/dev-10.jpeg" width="100%">
+      <br>
+      <b>Drilling holes into enclosure</b>
+    </td>
+    <td>
+      <img src="./assets/graphics/dev-9.jpeg" width="100%">
+      <br>
+      <b>Wooden enclosure baseplate</b>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="./assets/graphics/dev-4.jpeg" width="100%">
+      <br>
+      <b>Mounting terminal blocks</b>
+    </td>
+    <td>
+      <img src="./assets/graphics/dev-8.jpeg" width="100%">
+      <br>
+      <b>Aluminum mounting plate</b>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="./assets/graphics/dev-7.jpeg" width="100%">
+      <br>
+      <b>Soldering of connections</b>
+    </td>
+    <td>
+      <img src="./assets/graphics/dev-5.jpeg" width="100%">
+      <br>
+      <b>Wiring terminal blocks</b>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="./assets/graphics/dev-6.jpeg" width="100%">
+      <br>
+      <b>Electrical wiring</b>
+    </td>
+    <td>
+      <img src="./assets/graphics/dev-12.jpg" width="100%">
+      <br>
+      <b>Finished project</b>
+    </td>
+  </tr>
+</table>
 
 ## Quotes / Citations
 
