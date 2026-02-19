@@ -114,10 +114,8 @@ powered by using appropriate DC voltage levels, and special care and
 professional advice was taken to ensure electrical separation and safe
 wiring between the circuits.
 
-<figure id="fig:placeholder" data-latex-placement="H">
-<img src="./assets/oasis-schematic-v3.png" style="width:100.0%" />
-<figcaption>Schematics of the hardware</figcaption>
-</figure>
+<h3>Schematics of the hardware</h3>
+<img src="./assets/oasis-schematic-v3.png" width="100%">
 
 ## Software Structure
 
